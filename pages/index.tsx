@@ -7,7 +7,7 @@ const HomePage: NextPage = () => {
       <Head>
         <title>NFT Notify</title>
       </Head>
-      <div className="relative w-screen min-h-screen p-4 md:p-8">
+      <div className="relative w-screen min-h-screen p-4">
         <div>Nav!</div>
 
         <div className="flex flex-col md:flex-row md:items-center justify-center w-full gap-6 mb-16"></div>

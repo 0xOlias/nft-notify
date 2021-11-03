@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: nft-notify
+    env: node
+    repo: https://github.com/0xOlias/nft-notify.git
+    plan: standard
+    branch: main
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 60
+      targetCPUPercent: 60
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: db
+          property: connectionString
+
+databases:
+  - name: db
+    ipAllowList: []
