@@ -1,26 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-import Cors from 'cors'
+import { cors } from '../../../lib/utils'
 
-function cors(req: NextApiRequest, res: NextApiResponse) {
-  return new Promise((resolve, reject) => {
-    Cors({
-      methods: ['OPTIONS', 'HEAD', 'GET', 'POST'],
-    })(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result)
-      }
-      return resolve(result)
-    })
-  })
-}
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  await cors(req, res)
 
-export default async (_req: NextApiRequest, res: NextApiResponse) => {
-  await cors(_req, res)
+  console.log('got request with body:', req.body)
 
-  try {
-    res.status(200).json({ nice: 'looks great' })
-  } catch (err) {
-    // res.status(500).json({ statusCode: 500, message: err.message })
-  }
+  res.status(200).json({ nice: 'looks great' })
 }
