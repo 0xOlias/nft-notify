@@ -9,7 +9,7 @@ const pool = createPool(process.env.DB_URL)
 
 const migrator = new SlonikMigrator({
   migrationsPath: './migrations',
-  migrationTableName: 'migration',
+  migrationTableName: 'migrations',
   slonik: pool,
   logger: undefined,
 })

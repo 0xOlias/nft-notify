@@ -12,6 +12,7 @@
     "@usedapp/core": "^0.5.3",
     "axios": "^0.24.0",
     "cors": "^2.8.5",
+    "formik": "^2.2.9",
     "js-convert-case": "^4.1.2",
     "next": "11.0.1",
     "react": "17.0.2",

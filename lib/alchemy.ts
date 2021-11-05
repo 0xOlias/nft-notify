@@ -1,6 +1,12 @@
 import axios from 'axios'
-import db from './db'
-import type { Webhook } from './types'
+
+import type { AlchemyWebhook } from './types'
+
+const config = {
+  headers: {
+    'X-Alchemy-Token': process.env.ALCHEMY_API_KEY!,
+  },
+}
 
 const createWebhook = async ({ addresses }: { addresses: string[] }) => {
   try {
@@ -12,19 +18,32 @@ const createWebhook = async ({ addresses }: { addresses: string[] }) => {
         webhook_url: `${process.env.BASE_URL!}/api/webhook`,
         addresses: addresses,
       },
-      {
-        headers: {
-          'X-Alchemy-Token': process.env.ALCHEMY_API_KEY!,
-        },
-      }
+      config
     )
 
-    const receivedWebhookObject = response.data.data as Webhook
-
-    await db.webhooks.insert(receivedWebhookObject)
+    return response.data.data as AlchemyWebhook
   } catch (err) {
     console.warn('error while creating webhook: ', err)
+    return null
   }
 }
 
-export { createWebhook }
+const updateWebhook = async ({ webhookId, addresses }: { webhookId: number; addresses: string[] }) => {
+  try {
+    const response = await axios.put(
+      'https://dashboard.alchemyapi.io/api/update-webhook-addresses',
+      {
+        webhook_id: webhookId,
+        addresses: addresses,
+      },
+      config
+    )
+
+    return response.data.data as AlchemyWebhook
+  } catch (err) {
+    console.warn('error while updating webhook: ', err)
+    return null
+  }
+}
+
+export { createWebhook, updateWebhook }

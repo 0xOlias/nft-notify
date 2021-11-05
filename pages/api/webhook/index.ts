@@ -7,5 +7,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   console.log('got request with body:', req.body)
 
-  res.status(200).json({ nice: 'looks great' })
+  res.status(200).json({ message: 'success' })
 }
