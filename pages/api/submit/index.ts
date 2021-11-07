@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import db from '../../../lib/db'
-import { updateWebhook, createWebhook } from '../../../lib/alchemy'
+import db from '../../../api/lib/db'
+import { updateWebhook, createWebhook } from '../../../api/lib/alchemy'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!Object.keys(req.body).includes('email') || !Object.keys(req.body).includes('addresses')) {

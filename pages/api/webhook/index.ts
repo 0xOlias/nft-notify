@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { cors } from '../../../lib/utils'
+import { cors } from '../../../api/lib/utils'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res)
