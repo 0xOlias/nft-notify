@@ -16,7 +16,7 @@ import {
 import Info from '../components/icons/Info'
 
 const RPC_URLS: { [chainId: number]: string } = {
-  1: process.env.RPC_URL_1!,
+  1: process.env.NEXT_PUBLIC_RPC_URL_1!,
 }
 
 enum ConnectorNames {
